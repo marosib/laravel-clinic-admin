@@ -8,8 +8,6 @@
     </head>
     <body class="antialiased bg-gray-50 text-gray-800">
         <div class="min-h-screen flex flex-col items-center justify-center px-6">
-
-            <!-- Logo / Branding -->
             <div class="flex items-center space-x-2 mb-8">
                 <div class="shrink-0 flex items-center h-16">
                     <a class="block" href="{{ route('dashboard') }}">
@@ -22,25 +20,22 @@
                     </a>
                 </div>
             </div>
-
-            <!-- Hero -->
             <div class="text-center max-w-lg">
-                <h2 class="font-semibold mb-4">Orvosi vizitek egyszerűen</h2>
+                <h2 class="font-semibold mb-4">
+                    Orvosi vizitek egyszerűen
+                </h2>
                 <p class="text-gray-600 mb-8">
                     Kezelje pácienseit, rögzítse a viziteket, és kövesse a statisztikákat egy letisztult, modern rendszerben.
                 </p>
             </div>
-
-            <!-- Auth buttons -->
             <div class="flex space-x-4">
-                <a href="{{ route('login') }}"
-                   class="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
+                <a
+                    href="{{ route('login') }}"
+                   class="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
+                >
                    Belépés
                 </a>
             </div>
-
-
-            <!-- Footer -->
             <footer class="mt-12 text-sm text-gray-500">
                 &copy; {{ date('Y') }} Laravel Clinic Admin - Bemutató projekt
             </footer>

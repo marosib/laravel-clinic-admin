@@ -13,3 +13,4 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/patient.php';
