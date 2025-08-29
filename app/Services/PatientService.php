@@ -10,9 +10,9 @@ class PatientService
     public function __construct(private PatientRepositoryInterface $patients)
     {}
 
-    public function list(?string $search = null)
+    public function list(?string $search = null, int $per_page = 10)
     {
-        return $this->patients->paginate($search, 15);
+        return $this->patients->paginate($search, $per_page);
     }
 
     public function show(int $id): ?Patient

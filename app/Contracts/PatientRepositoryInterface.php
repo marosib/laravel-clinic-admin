@@ -7,7 +7,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 interface PatientRepositoryInterface
 {
-    public function paginate(?string $search = null, int $per_page = 15): LengthAwarePaginator;
+    public function paginate(?string $search = null, int $per_page = 10): LengthAwarePaginator;
     public function find(int $id): ?Patient;
     public function create(array $data): Patient;
     public function update(Patient $patient, array $data): bool;

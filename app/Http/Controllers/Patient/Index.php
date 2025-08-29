@@ -10,7 +10,7 @@ class Index extends Controller
 {
     public function __invoke(Request $request, PatientService $service)
     {
-        $patients = $service->list($request->string('search'));
+        $patients = $service->list($request->string('search'), $request->input('per_page', 10));
 
         return view('patients.index', compact('patients'));
     }

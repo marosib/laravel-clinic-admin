@@ -9,9 +9,9 @@ use App\Services\PatientService;
 
 class Update extends Controller
 {
-    public function __invoke(Patient $id, UpdatePatientRequest $request, PatientService $service)
+    public function __invoke(Patient $patient, UpdatePatientRequest $request, PatientService $service)
     {
-        $service->update($id, $request->validated());
+        $service->update($patient, $request->validated());
 
         return redirect()->route('admin.patients.index')->with('success','Beteg adatai sikeresen módosítva.');
     }

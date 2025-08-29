@@ -8,9 +8,9 @@ use App\Services\PatientService;
 
 class Delete extends Controller
 {
-    public function __invoke(Patient $id, PatientService $service)
+    public function __invoke(Patient $patient, PatientService $service)
     {
-        $service->destroy($id);
+        $service->destroy($patient);
 
         return redirect()->route('admin.patients.index')->with('success','Beteg sikeresen törölve.');
     }

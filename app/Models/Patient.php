@@ -17,6 +17,12 @@ class Patient extends Model
         'birth_date'
     ];
 
+    protected $casts = [
+        'birth_date' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
     public function visits()
     {
         return $this->hasMany(Visit::class);

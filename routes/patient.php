@@ -13,8 +13,8 @@ Route::middleware(['auth', 'web'])->prefix('admin')->name('admin.patients.')->gr
     Route::get('/patients', Index::class)->name('index');
     Route::get('/patients/create', Create::class)->name('create');
     Route::post('/patients', Store::class)->name('store');
-    Route::get('/patients/{id}', Show::class)->name('show');
-    Route::get('/patients/{id}/edit', Edit::class)->name('edit');
-    Route::put('/patients/{id}', Update::class)->name('update');
-    Route::delete('/patients/{id}', Delete::class)->name('destroy');
+    Route::get('/patients/{patient}', Show::class)->name('show');
+    Route::get('/patients/{patient}/edit', Edit::class)->name('edit');
+    Route::put('/patients/{patient}', Update::class)->name('update');
+    Route::delete('/patients/{patient}', Delete::class)->name('destroy');
 });

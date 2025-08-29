@@ -8,7 +8,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class PatientRepository implements PatientRepositoryInterface
 {
-    public function paginate(?string $search = null, int $per_page = 15): LengthAwarePaginator
+    public function paginate(?string $search = null, int $per_page = 10): LengthAwarePaginator
     {
         return Patient::query()
             ->select(['id', 'name', 'email', 'birth_date'])
@@ -17,6 +17,7 @@ class PatientRepository implements PatientRepositoryInterface
                 ->orWhere('email', 'like', "%{$search}%"))
             ->latest('id')
             ->paginate($per_page)
+            ->withQueryString()
         ;
     }
 
@@ -24,8 +25,8 @@ class PatientRepository implements PatientRepositoryInterface
     {
         return Patient::query()
             ->where('id', $id)
-            ->select(['id', 'name', 'email', 'birth_date'])
-            ->with('visits:id,reason,patient_id')
+            ->select(['id', 'name', 'email', 'birth_date', 'created_at', 'updated_at'])
+            ->with('visits:id,reason,patient_id,visited_at')
             ->first()
         ;
     }
