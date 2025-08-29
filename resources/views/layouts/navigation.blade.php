@@ -4,16 +4,21 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                <div class="shrink-0 flex items-center h-16">
+                    <a class="block" href="{{ route('dashboard') }}">
+                        <div class="flex items-center ">
+                            <div class="size-10 rotate-[30deg]">
+                                <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs><style>.cls-1{fill:none;stroke:rgb(37,99,235);stroke-linecap:round;stroke-linejoin:round;stroke-width:2px}</style></defs><path class="cls-1" d="M14.14 4c0 10 19.77 10 19.77 20S14.14 34 14.14 44"/><path class="cls-1" d="M33.91 4c0 10-19.77 10-19.77 20s19.77 10 19.77 20"/><path class="cls-1" d="M33.91 4c0 10-19.77 10-19.77 20M30 23H14M25 18h-7M30 10h-7M33 6H20M18 38h7M15 42h13M29 28H16"/><path class="cls-1" d="M-496-632h700V68h-700z"/></svg>
+                            </div>
+                            <span class="font-bold text-gray-800">Laravel Clinic Admin</span>
+                        </div>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        Irányítópult
                     </x-nav-link>
                 </div>
             </div>
@@ -42,7 +47,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                Kijelentkezés
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -65,7 +70,7 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                Irányítópult
             </x-responsive-nav-link>
         </div>
 
@@ -82,7 +87,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        Kijelentkezés
                     </x-responsive-nav-link>
                 </form>
             </div>
