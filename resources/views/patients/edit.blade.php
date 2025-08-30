@@ -29,7 +29,7 @@
                             type="text"
                             name="name"
                             :value="old('name', $patient->name)"
-                            required autofocus
+                            autofocus
                         />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
@@ -41,7 +41,6 @@
                             type="email"
                             name="email"
                             :value="old('email', $patient->email)"
-                            required
                         />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>

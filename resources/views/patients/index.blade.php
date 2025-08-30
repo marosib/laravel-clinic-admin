@@ -110,7 +110,7 @@
                             {{ $patients->firstItem() ?? 0 }} - {{ $patients->lastItem() ?? 0 }}
                         </div>
                         <div>
-                            {{ $patients->links() }}
+                            {{ $patients->links('components.custom-pagination') }}
                         </div>
                     </div>
                 </div>
