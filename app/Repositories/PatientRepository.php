@@ -31,7 +31,6 @@ class PatientRepository implements PatientRepositoryInterface
         return Patient::query()
             ->where('id', $id)
             ->select(['id', 'name', 'email', 'birth_date', 'created_at', 'updated_at'])
-            ->with('visits:id,reason,patient_id,visited_at')
             ->first()
         ;
     }

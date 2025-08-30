@@ -2,9 +2,10 @@
 
 namespace App\Contracts;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 interface VisitRepositoryInterface
 {
-    public function forPatient(int $patient_id): Collection;
+    public function forPatientPaginate(int $patient_id): LengthAwarePaginator;
 }
