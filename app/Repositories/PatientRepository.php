@@ -8,6 +8,11 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class PatientRepository implements PatientRepositoryInterface
 {
+    public function countAll(): int
+    {
+        return Patient::count();
+    }
+
     public function paginate(?string $search = null, int $per_page = 10): LengthAwarePaginator
     {
         return Patient::query()

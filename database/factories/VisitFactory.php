@@ -17,7 +17,8 @@ class VisitFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'reason' => collect(['Megfázás','Fejfájás','Allergia','Kontroll','Vérnyomás'])->random(),
+            'visited_at' => now()->subDays(rand(0,30))->setTime(rand(8,16), [0,15,30,45][rand(0,3)]),
         ];
     }
 }

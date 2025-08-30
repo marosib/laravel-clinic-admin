@@ -17,7 +17,10 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="w-full flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
-                <form method="GET" action="{{ route('admin.patients.index') }}" class="flex items-center gap-2 w-full">
+                <form
+                    method="GET" action="{{ route('admin.patients.index') }}"
+                    class="flex flex-col gap-4 sm:gap-2 sm:flex-row sm:items-center sm:justify-between w-full p-2 sm:p-0"
+                >
                     <x-text-input
                         type="text"
                         name="search"
@@ -25,16 +28,18 @@
                         placeholder="Keresés név, email..."
                         class="w-full sm:w-64"
                     />
-                    <label for="per_page" class="text-sm text-gray-600 dark:text-gray-300">Beteg/Oldal:</label>
-                    <select name="per_page" id="per_page" class="border-gray-300 dark:border-gray-700 rounded-md shadow-sm">
-                        @foreach([5,10,25,50,100] as $size)
-                            <option value="{{ $size }}" {{ request('per_page', 10) == $size ? 'selected' : '' }}>
-                                {{ $size }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <div class="ml-auto">
-                        <x-primary-button>
+                    <div class="sm:flex items-center gap-2">
+                        <label for="per_page" class="block text-sm text-gray-600 dark:text-gray-300">Beteg/Oldal:</label>
+                        <select name="per_page" id="per_page" class="w-full border-gray-300 dark:border-gray-700 rounded-md shadow-sm">
+                            @foreach([5,10,25,50,100] as $size)
+                                <option value="{{ $size }}" {{ request('per_page', 10) == $size ? 'selected' : '' }}>
+                                    {{ $size }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="w-full sm:w-auto ml-auto">
+                        <x-primary-button class="w-full sm:w-auto">
                             Keresés
                         </x-primary-button>
                     </div>
@@ -64,7 +69,7 @@
                                             </a>
                                         </td>
                                         <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
-                                            {{ optional($patient->birth_date)->format('Y-m-d') ?? '-' }}
+                                            {{ optional($patient->birth_date)->format('Y.m.d.') ?? '-' }}
                                         </td>
                                         <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
                                             {{ $patient->email ?? '-' }}
@@ -75,20 +80,28 @@
                                                     href="{{ route('admin.patients.edit', $patient) }}"
                                                     class="px-3 py-1 bg-yellow-500 text-white rounded-md shadow hover:bg-yellow-600 transition text-xs"
                                                 >
-                                                    Szerkeszt
+                                                    <div class="flex items-center justify-center text-lg font-bold">
+                                                        <i class="lni lni-gear-1"></i>
+                                                    </div>
                                                 </a>
                                                 <a
                                                     href="{{ route('admin.patients.show', $patient) }}"
                                                     class="px-3 py-1 bg-green-600 text-white rounded-md shadow hover:bg-green-700 transition text-xs"
                                                 >
-                                                    Megnéz
+                                                    <div class="flex items-center justify-center text-lg font-bold">
+                                                        <i class="lni lni-id-card"></i>
+                                                    </div>
                                                 </a>
                                                 <form action="{{ route('admin.patients.destroy', $patient) }}" method="POST" onsubmit="return confirm('Biztosan törlöd ezt a beteget?');" class="inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit"
-                                                            class="px-3 py-1 bg-red-600 text-white rounded-md shadow hover:bg-red-700 transition text-xs">
-                                                        Töröl
+                                                    <button
+                                                        type="submit"
+                                                        class="px-3 py-1 bg-red-600 text-white rounded-md shadow hover:bg-red-700 transition text-xs"
+                                                    >
+                                                        <div class="flex items-center justify-center text-lg font-bold">
+                                                            <i class="lni lni-trash-3"></i>
+                                                        </div>
                                                     </button>
                                                 </form>
                                             </div>

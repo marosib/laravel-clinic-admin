@@ -45,7 +45,7 @@ class VisitRepository implements VisitRepositoryInterface
     public function topReasonsForDoctor(int $doctor_id, int $limit = 3): array
     {
         return Visit::query()
-            ->select(['id', 'reason', DB::raw('COUNT(*) as total'), 'doctor_id'])
+            ->select(['reason', DB::raw('COUNT(*) as total')])
             ->where('doctor_id', $doctor_id)
             ->groupBy('reason')
             ->orderByDesc('total')

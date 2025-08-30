@@ -23,6 +23,9 @@
                     <x-nav-link :href="route('admin.patients.index')" :active="request()->routeIs('admin.patients.index')">
                         Betegek
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.statistics.index')" :active="request()->routeIs('admin.statistics.index')">
+                        Statisztika
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -77,6 +80,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.patients.index')" :active="request()->routeIs('admin.patients.index')">
                 Betegek
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.statistics.index')" :active="request()->routeIs('admin.statistics.index')">
+                Statisztika
             </x-responsive-nav-link>
         </div>
 

@@ -1,12 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center gap-x-2">
-            <a href="{{ route('admin.patients.index') }}">
-                <h2 class="font-semibold text-gray-800 dark:text-gray-200 leading-tight">
-                    Vissza
-                </h2>
+            <a
+                href="{{ route('admin.patients.index') }}"
+                class="flex items-center justify-center size-[42px] bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition"
+            >
+                <div class="flex items-center justify-center text-lg font-bold">
+                    <i class="lni lni-arrow-left"></i>
+                </div>
             </a>
-            -
             <a href="{{ route('admin.patients.show', $patient) }}">
                 <h2 class="font-semibold text-gray-800 dark:text-gray-200 leading-tight">
                     {{ $patient->name }}
@@ -51,7 +53,7 @@
                             class="block mt-1 w-full"
                             type="date"
                             name="birth_date"
-                            :value="old('birth_date', optional($patient->birth_date)->format('Y-m-d'))"
+                            :value="old('birth_date', optional($patient->birth_date)->format('Y.m.d.'))"
                         />
                         <x-input-error :messages="$errors->get('birth_date')" class="mt-2" />
                     </div>

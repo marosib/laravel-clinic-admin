@@ -1,12 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center gap-x-2">
-            <a href="{{ route('admin.patients.index') }}">
-                <h2 class="font-semibold text-gray-800 dark:text-gray-200 leading-tight">
-                    Vissza
-                </h2>
+            <a
+                href="{{ route('admin.patients.index') }}"
+                class="flex items-center justify-center size-[42px] bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition"
+            >
+                <div class="flex items-center justify-center text-lg font-bold">
+                    <i class="lni lni-arrow-left"></i>
+                </div>
             </a>
-            -
             <h2 class="font-semibold text-gray-800 dark:text-gray-200 leading-tight">
                 Új beteg felvétele
             </h2>
