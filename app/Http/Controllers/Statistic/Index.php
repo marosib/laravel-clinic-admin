@@ -11,14 +11,14 @@ class Index extends Controller
     {
         $doctor = auth()->user();
 
-        $weeklyVisitCount = $service->weeklyVisitCount($doctor->id);
-        $latestVisits = $service->latestVisits($doctor->id, 5);
-        $topReasons = $service->topReasons($doctor->id, 3);
+        $weekly_visits_count = $service->weeklyVisitsCount($doctor->id);
+        $latest_visits = $service->latestVisits($doctor->id, 5);
+        $top_reasons = $service->topReasons($doctor->id, 3);
 
         return view('statistics.index', compact(
-            'weeklyVisitCount',
-            'latestVisits',
-            'topReasons'
+            'weekly_visits_count',
+            'latest_visits',
+            'top_reasons'
         ));
     }
 }
