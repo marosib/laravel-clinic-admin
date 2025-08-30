@@ -12,8 +12,7 @@ class VisitRepository implements VisitRepositoryInterface
     public function forPatientPaginate(int $patient_id, int $per_page = 10): LengthAwarePaginator
     {
         return Visit::query()
-            ->select(['id', 'reason', 'visited_at', 'doctor_id'])
-            ->with('doctor:id,name')
+            ->select(['id', 'reason', 'visited_at'])
             ->where('patient_id', $patient_id)
             ->orderByDesc('visited_at')
             ->latest('id')

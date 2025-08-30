@@ -42,7 +42,7 @@
                     </div>
                     <div class="flex flex-col sm:flex-row sm:gap-4">
                         <span class="font-semibold w-32">Utolsó látogatás:</span>
-                        <span>{{ optional($patient->visits?->last()?->visited_at)->diffForHumans() ?? '-' }}</span>
+                        <span>{{ $visits?->last()?->visited_at?->diffForHumans() ?? '-' }}</span>
                     </div>
                     <div class="flex flex-col sm:flex-row sm:gap-4">
                         <span class="font-semibold w-32">Létrehozva:</span>
