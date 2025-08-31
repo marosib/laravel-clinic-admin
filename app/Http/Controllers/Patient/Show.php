@@ -13,7 +13,7 @@ class Show extends Controller
         $patient = $service->show($patient);
         abort_if(!$patient, 404);
 
-        $visits = $visitService->listForPattient($patient->id);
+        $visits = $visitService->listForPatient($patient->id);
 
         return view('patients.show', compact(
             'patient',

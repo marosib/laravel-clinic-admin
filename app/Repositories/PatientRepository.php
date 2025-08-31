@@ -47,7 +47,7 @@ class PatientRepository implements PatientRepositoryInterface
 
     public function delete(Patient $patient): bool
     {
-        return (bool)$patient->delete();
+        return (bool) $patient->delete();
     }
 
 }

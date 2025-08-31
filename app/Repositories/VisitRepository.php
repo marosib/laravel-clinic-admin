@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Contracts\VisitRepositoryInterface;
 use App\Models\Visit;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 
 class VisitRepository implements VisitRepositoryInterface
 {
@@ -20,4 +19,15 @@ class VisitRepository implements VisitRepositoryInterface
             ->withQueryString()
         ;
     }
+
+    public function create(array $data): Visit
+    {
+        return Visit::create($data);
+    }
+
+    public function delete(Visit $visit): bool
+    {
+        return (bool) $visit->delete();
+    }
+
 }

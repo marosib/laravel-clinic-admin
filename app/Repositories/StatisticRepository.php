@@ -77,7 +77,8 @@ class StatisticRepository implements StatisticRepositoryInterface
             ->orderBy('day')
             ->get()
             ->pluck('total','day')
-            ->toArray();
+            ->toArray()
+        ;
 
         $weekDays = [];
         for($date = now()->startOfWeek(); $date->lte(now()->endOfWeek()); $date->addDay()) {

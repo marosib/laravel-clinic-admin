@@ -54,68 +54,120 @@
                     </div>
                 </div>
             </div>
-            <div class="flex items-center gap-x-2 h-[42px]">
-                <h2 class="font-semibold text-gray-800 dark:text-gray-200 leading-tight">
-                    Vizitek
-                </h2>
-            </div>
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                            <thead class="bg-gray-50 dark:bg-gray-700">
-                                <tr>
-                                    <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-600 dark:text-gray-200">#</th>
-                                    <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-600 dark:text-gray-200">Ok</th>
-                                    <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-600 dark:text-gray-200">Vizit dátuma</th>
-                                    <th class="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-600 dark:text-gray-200">Műveletek</th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                                @forelse($visits as $index => $visit)
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-900">
-                                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
-                                            ID: {{ $visit->id }}
-                                        </td>
-                                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-800 dark:text-gray-100">
-                                            {{ $visit->reason }}
-                                        </td>
-                                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
-                                            {{ optional($visit->visited_at)->format('Y.m.d. h:m') ?? '-' }}
-                                        </td>
-                                        <td class="px-4 py-3 whitespace-nowrap text-right text-sm font-medium">
-                                            <div class="inline-flex items-center space-x-2">
-                                                <form action="" method="POST" onsubmit="return confirm('Biztosan törlöd ezt a vizitet?');" class="inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button
-                                                        type="submit"
-                                                        class="px-3 py-1 bg-red-600 text-white rounded-md shadow hover:bg-red-700 transition text-xs"
-                                                    >
-                                                        <div class="flex items-center justify-center text-lg font-bold">
-                                                            <i class="lni lni-trash-3"></i>
-                                                        </div>
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="7" class="px-4 py-6 text-center text-gray-600 dark:text-gray-300">
-                                            Nincsenek megjeleníthető vizitek.
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+            <div x-data="{ show : false}">
+                <div class="flex items-center gap-x-2">
+                    <h2 class="font-semibold text-gray-800 dark:text-gray-200 leading-tight">
+                        Vizitek
+                    </h2>
+                    <div class="ml-auto">
+                        <button
+                            x-on:click="show = !show"
+                            class="px-6 py-3  text-white rounded-lg shadow transition-all duration-300 ease-in-out"
+                            :class="show ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'"
+                        >
+                            <div class="flex items-center justify-center text-lg font-bold">
+                                <i :class="show ? 'rotate-45' : ''" class="lni lni-plus transition-all duration-300 ease-in-out"></i>
+                            </div>
+                        </button>
                     </div>
-                    <div class="p-4 flex items-center justify-between">
-                        <div class="text-sm text-gray-600 dark:text-gray-300">
-                            Összesen: <span class="font-medium">{{ $visits->total() }}</span> beteg -
-                            {{ $visits->firstItem() ?? 0 }} - {{ $visits->lastItem() ?? 0 }}
+                </div>
+                <div
+                    x-show="show"
+                    x-transition
+                    class="my-6 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
+                >
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <form method="POST" action="{{ route('admin.visits.store', $patient->id) }}">
+                            @csrf
+                            <div>
+                                <x-input-label for="reason" :value="'Név'" />
+                                <x-text-input
+                                    id="reason"
+                                    class="block mt-1 w-full"
+                                    type="text"
+                                    name="reason"
+                                    :value="old('reason')"
+                                    autofocus
+                                />
+                                <x-input-error :messages="$errors->get('reason')" class="mt-2" />
+                            </div>
+                            <div class="mt-4">
+                                <x-input-label for="visited_at" :value="'Születési dátum'" />
+                                <x-text-input
+                                    id="visited_at"
+                                    class="block mt-1 w-full"
+                                    type="date"
+                                    name="visited_at"
+                                    :value="old('visited_at')"
+                                />
+                                <x-input-error :messages="$errors->get('visited_at')" class="mt-2" />
+                            </div>
+                            <div class="flex items-center justify-end mt-6">
+                                <x-primary-button>
+                                    Mentés
+                                </x-primary-button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="mt-6 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                                <thead class="bg-gray-50 dark:bg-gray-700">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-600 dark:text-gray-200">#</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-600 dark:text-gray-200">Ok</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-600 dark:text-gray-200">Vizit dátuma</th>
+                                        <th class="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-600 dark:text-gray-200">Műveletek</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                                    @forelse($visits as $index => $visit)
+                                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-900">
+                                            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
+                                                ID: {{ $visit->id }}
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-800 dark:text-gray-100">
+                                                {{ $visit->reason }}
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
+                                                {{ optional($visit->visited_at)->format('Y.m.d. h:m') ?? '-' }}
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap text-right text-sm font-medium">
+                                                <div class="inline-flex items-center space-x-2">
+                                                    <form action="{{ route('admin.visits.destroy', $visit->id) }}" method="POST" onsubmit="return confirm('Biztosan törlöd ezt a vizitet?');" class="inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button
+                                                            type="submit"
+                                                            class="px-3 py-1 bg-red-600 text-white rounded-md shadow hover:bg-red-700 transition text-xs"
+                                                        >
+                                                            <div class="flex items-center justify-center text-lg font-bold">
+                                                                <i class="lni lni-trash-3"></i>
+                                                            </div>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="7" class="px-4 py-6 text-center text-gray-600 dark:text-gray-300">
+                                                Nincsenek megjeleníthető vizitek.
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
                         </div>
-                        <div>
-                            {{ $visits->links('components.custom-pagination') }}
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="text-sm text-gray-600 dark:text-gray-300">
+                                Összesen: <span class="font-medium">{{ $visits->total() }}</span> beteg -
+                                {{ $visits->firstItem() ?? 0 }} - {{ $visits->lastItem() ?? 0 }}
+                            </div>
+                            <div>
+                                {{ $visits->links('components.custom-pagination') }}
+                            </div>
                         </div>
                     </div>
                 </div>

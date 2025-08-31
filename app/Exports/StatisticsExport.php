@@ -24,8 +24,8 @@ class StatisticsExport implements FromCollection, WithHeadings
 
         $rows->push(['--- Napi bontás ---']);
         $rows->push(['Dátum', 'Látogatások']);
-        foreach ($this->data['weekly_daily_breakdown'] as $nap => $db) {
-            $rows->push([$nap, $db]);
+        foreach ($this->data['weekly_daily_breakdown'] as $date => $db) {
+            $rows->push([$date, $db]);
         }
         $rows->push(['']);
 
