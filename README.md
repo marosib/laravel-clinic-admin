@@ -60,9 +60,9 @@ Jelenleg csak egy orvos van fixen kezelve, érdemes lenne külön modell + CRUD 
 - **Szerepkörök** -
 Admin és személyzet jogosultságok elkülönítése.
 - **Teljes vizit CRUD** -
-Jelenleg csak létrehozás és törlés van, a szerkesztés és részletesebb megtekintés hiányzik.
+Vizitek kiegészítése szerkesztés és részletesebb megtekintés funckiókkal.
 - **Feature tesztek bővítése** -
-Vizitek és staztisztikák tesztjei hiányoznak.
+Vizitek és statisztikák tesztjeinek megvalósítása.
 - **Riportok** -
 Többféle export és formátum.
 - **Felhasználói élmény** -
