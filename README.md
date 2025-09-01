@@ -101,7 +101,7 @@ php artisan key:generate
 ```
 
 ### 4. Adatbázis beállítása
-Nyisd meg a `.env` fájlt és módosítsd az adatbázis hozzáférés adatait:
+Nyisd meg a `.env` fájlt és módosítsd az adatbázis hozzáférés adatait a saját adatbázisodnak megfeleően. Példa:
 
 ```
 DB_CONNECTION=mysql
