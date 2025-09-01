@@ -1,66 +1,149 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏥 Laravel Clinic Admin
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 📜 Leírás
+Ebben a tesztfeladatban egy rendelő admin felületét kellett elkészítenem a megadott kritériumknak megfelelően.
+A megvalósítás során igyekeztem olyan szerkezetet kialakítani, ami könnyen bővíthető és átlátható marad hosszabb távon is.
 
-## About Laravel
+## 💻 Rendszerkövetelmények
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A projekt futtatásához az alábbiak szükségesek:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Laravel 11**
+- **PHP 8.2**
+- **Composer**
+- **MySQL**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## ✅ Megoldás
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Betegkezelés
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- CRUD műveletek (listázás, keresés, létrehozás, szerkesztés, törlés).
+- Beteg részletei oldalon a vizitek listája.
+- Validáció minden űrlapnál.
+- Flash üzenetek a sikeres műveletekhez.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Vizitek
 
-## Laravel Sponsors
+- Vizit létrehozás/törlés.
+- Automatikus visited_at kitöltés, ha nincs megadva.
+- Beteghez kötött lista nézet.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Statisztika
 
-### Premium Partners
+- Heti vizitszám.
+- Legutóbbi vizitek listája.
+- Leggyakoribb okok.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## ✏️ Extra és hozzátett részek
 
-## Contributing
+Az alapfunkciókon túl bevezettem néhány olyan megoldást, ami ugyan nem volt elvárás, de a kód tisztaságát és bővíthetőségét segíti, vagy a kódolási stílusom része:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Repository pattern**
+Az adatelérési réteget egy külön Repository osztály kezeli. A Service réteg nem közvetlenül az Eloquenttel dolgozik, hanem egy interfészen keresztül hivatkozik rá (pl. `PatientRepositoryInterface`). Ezáltal a kód függetlenedik az Eloquenttől, könnyebben tesztelhető és bővíthető.
+- **Invokable controllerek**
+Minden controller egyetlen felelősségre fókuszál, és nem gyűlik össze bennük több, egymástól független logika. Ez jobban illeszkedik a SOLID elvekhez, így a kód átláthatóbb és könnyebben karbantartható.
+- **Vizitek további műveletei**
+A feladatban nem szerepelt de megvalósítottam a vizitek felvételét és törlését a jobb tesztelhetőség érdekében.
+- **Átlátható route struktúra**
+A route-okat modulonként külön fájlba szerveztem (patient.php, visit.php, statistic.php), így sokkal kezelhetőbb a projekt, ha nő az alkalmazás mérete.
+- **Statisztika modul bővítése**
+Nem csak az alap mutatók készültek el, hanem előkészítettem heti bontásokat, top okok és napi lebontás lekérdezéseit is.
+- **Export funkció**
+A statisztikák letölthetők külön endpointon keresztül. Ez jó alap lehet riportkészítéshez.
 
-## Code of Conduct
+## 🎒 További lehetőségek
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- **Több orvos kezelése**
+Jelenleg csak egy orvos van fixen kezelve, érdemes lenne külön modell + CRUD felülettel kezelni egy adminnak/igazgatónak.
+- **Szerepkörök**
+Admin és személyzet jogosultságok elkülönítése.
+- **Teljes vizit CRUD**
+Jelenleg csak létrehozás és törlés van, a szerkesztés és részletesebb megtekintés hiányzik.
+- **Feature tesztek bővítése**
+Vizitek és staztisztikák tesztjei hiányoznak.
+- **Riportok**
+Többféle export és formátum.
+- **Felhasználói élmény**
+Kereső finomítása, több flash üzenet típus (info, warning).
+- **Queue Jobs**
+Felkészülve a nagyobb mennyiségű adatok kezelésére laravel queue bevezetése és az exportok emailben való kiküldése hasznosabb lehet.
 
-## Security Vulnerabilities
+## ⚙️ Telepítés
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 1. Laravel 11 projekt letöltése
 
-## License
+```
+git clone https://github.com/marosib/laravel-clinic-admin.git
+cd laravel-admin-clinic
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 2. Függőségek telepítése
+Telepítsd a PHP csomagokat:
+
+```
+composer install
+```
+### 3. Környezeti fájl létrehozása
+Hozz létre egy `.env` fájlt a `.env.example` alapján:
+
+```
+cp .env.example .env
+```
+
+Majd generálj alkalmazás kulcsot:
+
+```
+php artisan key:generate
+```
+
+### 4. Adatbázis beállítása
+Nyisd meg a `.env` fájlt és módosítsd az adatbázis hozzáférés adatait:
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel_admin_clinic
+DB_USERNAME=root
+DB_PASSWORD=secret
+```
+
+A `DB_DATABASE`, `DB_USERNAME` és `DB_PASSWORD` értékeket állítsd be a saját MySQL beállításaid szerint.
+
+Ezután futtasd a migrációkat és töltsd fel az adatbázist:
+
+```
+php artisan migrate --seed
+```
+
+### 5. Szerver indítása
+
+```
+php artisan serve
+```
+
+Most elérhető lesz az API a következő címen:
+
+`http://127.0.0.1:8000`
+
+## 🔨 Használat
+
+### 1. Belépés
+
+A migrációk és seederek lefutása után a következő adatokkal lépj be a login felületen amit a főoldalról a `Belépés` gombra kattinva érsz el:
+- Email cím: `dr_teszt@example.com`
+- Jelszó: `teszt123`
+
+### 2. Elérések
+
+- Admin felület: `/admin/dashboard`
+- Betegek: `/admin/patients`
+- Vizitek: beteg részletei alatt `/admin/patients/{patient}`
+- Statisztikák: `/admin/statistics`
+- Export: `/admin/statistics/export`
+
+## 📄 Feladat
+
+👉 [Tesztfeladat](task.pdf)
