@@ -78,7 +78,7 @@ Felkészülve a nagyobb mennyiségű adatok kezelésére laravel queue bevezeté
 
 ```
 git clone https://github.com/marosib/laravel-clinic-admin.git
-cd laravel-admin-clinic
+cd laravel-clinic-admin
 ```
 
 ### 2. Függőségek telepítése
@@ -107,7 +107,7 @@ Nyisd meg a `.env` fájlt és módosítsd az adatbázis hozzáférés adatait a 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=laravel_admin_clinic
+DB_DATABASE=laravel_clinic_admin
 DB_USERNAME=root
 DB_PASSWORD=secret
 ```
@@ -120,13 +120,22 @@ Ezután futtasd a migrációkat és töltsd fel az adatbázist:
 php artisan migrate --seed
 ```
 
-### 5. Szerver indítása
+### 5. Frontend build
+
+Telepítsd a Node.js csomagokat és futtasd a fejlesztői buildet:
+
+```
+npm install
+npm run dev
+```
+
+### 6. Szerver indítása
 
 ```
 php artisan serve
 ```
 
-Most elérhető lesz az API a következő címen:
+Most elérhető lesz az alkalmazás a következő címen:
 
 `http://127.0.0.1:8000`
 

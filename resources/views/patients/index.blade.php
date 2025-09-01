@@ -7,9 +7,9 @@
             <div class="ml-auto">
                 <a
                     href="{{ route('admin.patients.create') }}"
-                   class="px-6 py-3 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition"
+                   class="flex items-center gap-1 sm:gap-2 px-2 sm:px-6 py-3 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition"
                 >
-                   Új beteg felvétele
+                    <i class="lni lni-plus"></i> Új beteg felvétele
                 </a>
             </div>
         </div>
@@ -39,8 +39,8 @@
                         </select>
                     </div>
                     <div class="w-full sm:w-auto ml-auto">
-                        <x-primary-button class="w-full sm:w-auto">
-                            Keresés
+                        <x-primary-button class="flex items-center justify-center gap-2 w-full sm:w-auto">
+                            <i class="lni lni-search-1"></i> Keresés
                         </x-primary-button>
                     </div>
                 </form>
