@@ -40,35 +40,37 @@ A projekt futtatásához az alábbiak szükségesek:
 
 Az alapfunkciókon túl bevezettem néhány olyan megoldást, ami ugyan nem volt elvárás, de a kód tisztaságát és bővíthetőségét segíti, vagy a kódolási stílusom része:
 
-- **Repository pattern**
+- **Repository pattern** -
 Az adatelérési réteget egy külön Repository osztály kezeli. A Service réteg nem közvetlenül az Eloquenttel dolgozik, hanem egy interfészen keresztül hivatkozik rá (pl. `PatientRepositoryInterface`). Ezáltal a kód függetlenedik az Eloquenttől, könnyebben tesztelhető és bővíthető.
-- **Invokable controllerek**
+- **Invokable controllerek** -
 Minden controller egyetlen felelősségre fókuszál, és nem gyűlik össze bennük több, egymástól független logika. Ez jobban illeszkedik a SOLID elvekhez, így a kód átláthatóbb és könnyebben karbantartható.
-- **Vizitek további műveletei**
+- **Vizitek további műveletei** -
 A feladatban nem szerepelt de megvalósítottam a vizitek felvételét és törlését a jobb tesztelhetőség érdekében.
-- **Átlátható route struktúra**
+- **Átlátható route struktúra** -
 A route-okat modulonként külön fájlba szerveztem (patient.php, visit.php, statistic.php), így sokkal kezelhetőbb a projekt, ha nő az alkalmazás mérete.
-- **Statisztika modul bővítése**
+- **Statisztika modul bővítése** -
 Nem csak az alap mutatók készültek el, hanem előkészítettem heti bontásokat, top okok és napi lebontás lekérdezéseit is.
-- **Export funkció**
+- **Export funkció** -
 A statisztikák letölthetők külön endpointon keresztül. Ez jó alap lehet riportkészítéshez.
 
 ## 🎒 További lehetőségek
 
-- **Több orvos kezelése**
+- **Több orvos kezelése** -
 Jelenleg csak egy orvos van fixen kezelve, érdemes lenne külön modell + CRUD felülettel kezelni egy adminnak/igazgatónak.
-- **Szerepkörök**
+- **Szerepkörök** -
 Admin és személyzet jogosultságok elkülönítése.
-- **Teljes vizit CRUD**
+- **Teljes vizit CRUD** -
 Jelenleg csak létrehozás és törlés van, a szerkesztés és részletesebb megtekintés hiányzik.
-- **Feature tesztek bővítése**
+- **Feature tesztek bővítése** -
 Vizitek és staztisztikák tesztjei hiányoznak.
-- **Riportok**
+- **Riportok** -
 Többféle export és formátum.
-- **Felhasználói élmény**
+- **Felhasználói élmény** -
 Kereső finomítása, több flash üzenet típus (info, warning).
-- **Queue Jobs**
+- **Queue Jobs** -
 Felkészülve a nagyobb mennyiségű adatok kezelésére laravel queue bevezetése és az exportok emailben való kiküldése hasznosabb lehet.
+
+---
 
 ## ⚙️ Telepítés
 
@@ -143,6 +145,8 @@ A migrációk és seederek lefutása után a következő adatokkal lépj be a lo
 - Vizitek: beteg részletei alatt `/admin/patients/{patient}`
 - Statisztikák: `/admin/statistics`
 - Export: `/admin/statistics/export`
+
+---
 
 ## 📄 Feladat
 
