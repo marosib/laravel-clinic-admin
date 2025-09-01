@@ -53,7 +53,7 @@
                             class="block mt-1 w-full"
                             type="date"
                             name="birth_date"
-                            :value="old('birth_date', optional($patient->birth_date)->format('Y.m.d.'))"
+                            :value="old('birth_date', optional($patient->birth_date)->format('Y-m-d'))"
                         />
                         <x-input-error :messages="$errors->get('birth_date')" class="mt-2" />
                     </div>

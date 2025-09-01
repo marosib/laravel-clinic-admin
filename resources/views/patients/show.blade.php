@@ -17,8 +17,8 @@
                     href="{{ route('admin.patients.edit', $patient->id) }}"
                    class="block px-6 py-3 bg-yellow-500 text-white rounded-lg shadow hover:bg-yellow-600 transition"
                 >
-                    <div class="flex items-center justify-center text-lg font-bold">
-                        <i class="lni lni-gear-1"></i>
+                    <div class="flex items-center gap-2 justify-center text-lg">
+                        <i class="lni lni-gear-1"></i> Szerkesztés
                     </div>
                 </a>
             </div>
@@ -65,8 +65,8 @@
                             class="px-6 py-3  text-white rounded-lg shadow transition-all duration-300 ease-in-out"
                             :class="show ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'"
                         >
-                            <div class="flex items-center justify-center text-lg font-bold">
-                                <i :class="show ? 'rotate-45' : ''" class="lni lni-plus transition-all duration-300 ease-in-out"></i>
+                            <div class="flex items-center gap-2 justify-center text-lg">
+                                <i :class="show ? 'rotate-45' : ''" class="lni lni-plus transition-all duration-300 ease-in-out"></i> Új vizit
                             </div>
                         </button>
                     </div>
@@ -80,7 +80,7 @@
                         <form method="POST" action="{{ route('admin.visits.store', $patient->id) }}">
                             @csrf
                             <div>
-                                <x-input-label for="reason" :value="'Név'" />
+                                <x-input-label for="reason" :value="'Vizit oka/Panasz'" />
                                 <x-text-input
                                     id="reason"
                                     class="block mt-1 w-full"
@@ -92,7 +92,7 @@
                                 <x-input-error :messages="$errors->get('reason')" class="mt-2" />
                             </div>
                             <div class="mt-4">
-                                <x-input-label for="visited_at" :value="'Születési dátum'" />
+                                <x-input-label for="visited_at" :value="'Vizit dátuma'" />
                                 <x-text-input
                                     id="visited_at"
                                     class="block mt-1 w-full"
@@ -116,7 +116,7 @@
                                 <thead class="bg-gray-50 dark:bg-gray-700">
                                     <tr>
                                         <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-600 dark:text-gray-200">#</th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-600 dark:text-gray-200">Ok</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-600 dark:text-gray-200">Vizit oka/Panasz</th>
                                         <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-600 dark:text-gray-200">Vizit dátuma</th>
                                         <th class="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-600 dark:text-gray-200">Műveletek</th>
                                     </tr>

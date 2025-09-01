@@ -30,14 +30,14 @@ class StatisticsExport implements FromCollection, WithHeadings
         $rows->push(['']);
 
         $rows->push(['--- Leggyakoribb okok ---']);
-        $rows->push(['Ok', 'Összes']);
+        $rows->push(['Vizit oka/Panasz', 'Összes']);
         foreach ($this->data['weekly_top_reasons'] as $ok => $db) {
             $rows->push([$ok, $db]);
         }
         $rows->push(['']);
 
         $rows->push(['--- Legutóbbi látogatások ---']);
-        $rows->push(['Páciens neve','Email','Születési dátum','Ok','Látogatás dátuma']);
+        $rows->push(['Páciens neve','Email','Születési dátum','Vizit oka/Panasz','Látogatás dátuma']);
         foreach ($this->data['weekly_visits'] as $v) {
             $rows->push([
                 $v->patient->name ?? '-',

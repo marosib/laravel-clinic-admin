@@ -61,6 +61,8 @@ Jelenleg csak egy orvos van fixen kezelve, érdemes lenne külön modell + CRUD 
 Admin és személyzet jogosultságok elkülönítése.
 - **Teljes vizit CRUD** -
 Vizitek kiegészítése szerkesztés és részletesebb megtekintés funckiókkal.
+- **Vizit okok/panaszok** -
+Külön táblába szervezni, akár teljes CRUD hozzá.
 - **Feature tesztek bővítése** -
 Vizitek és statisztikák tesztjeinek megvalósítása.
 - **Riportok** -
